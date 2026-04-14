@@ -1,0 +1,82 @@
+Step 1: Create the Web Form UI (Default.aspx) 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title>Division Example with Exception Handling</title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div style="margin:20px;"> 
+<h2>Division with Exception Handling</h2> 
+<asp:Label Text="Enter First Number: " runat="server" /> 
+<asp:TextBox ID="txtNum1" runat="server" /><br /><br /> 
+<asp:Label Text="Enter Second Number: " runat="server" /> 
+<asp:TextBox ID="txtNum2" runat="server" /><br /><br /> 
+<asp:Button ID="btnDivide" Text="Divide" runat="server" OnClick="btnDivide_Click" 
+/> 
+<br /><br /> 
+<asp:Label ID="lblResult" runat="server"  
+ForeColor="Blue" Font-Bold="True"></asp:Label><br /> 
+<asp:Label ID="lblError" runat="server"  
+ForeColor="Red" Font-Bold="True"></asp:Label><br /> 
+<asp:Label ID="lblFinally" runat="server"  
+ForeColor="Green"></asp:Label> 
+</div> 
+</form> 
+</body> 
+</html> 
+
+Step 2: Code Behind (Default.aspx.cs) 
+using System; 
+namespace WebFormsDivision 
+{ 
+// Custom Exception Class 
+public class NegativeNumberException : Exception 
+{ 
+public NegativeNumberException(string message) : base(message) 
+{ 
+} 
+} 
+public partial class _Default : System.Web.UI.Page 
+{ 
+protected void btnDivide_Click(object sender, EventArgs e) 
+{ 
+lblResult.Text = ""; 
+lblError.Text = ""; 
+lblFinally.Text = ""; 
+try 
+{ 
+int num1 = Convert.ToInt32(txtNum1.Text); 
+int num2 = Convert.ToInt32(txtNum2.Text); 
+// Throw custom exception if num2 is negative 
+if (num2 < 0) 
+{ 
+} 
+throw new NegativeNumberException("Second number cannot be negative."); 
+// Perform division 
+double result = num1 / num2; 
+lblResult.Text = "Result: " + result; 
+} 
+catch (DivideByZeroException) 
+{ 
+lblError.Text = "Error: Division by zero is not allowed!"; 
+} 
+catch (NegativeNumberException ex) 
+{ 
+lblError.Text = "Custom Exception: " + ex.Message; 
+} 
+catch (FormatException) 
+{ 
+lblError.Text = "Please enter valid numeric values."; 
+} 
+catch (Exception ex) 
+{ 
+lblError.Text = "Unexpected Error: " + ex.Message; 
+} 
+finally 
+{ 
+lblFinally.Text = "Execution Completed (Finally Block Executed)"; 
+} 
+} 
+} 
+}
