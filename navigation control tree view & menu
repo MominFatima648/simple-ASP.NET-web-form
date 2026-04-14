@@ -1,0 +1,47 @@
+Create Default.aspx (Main Navigation Page) 
+Open Default.aspx 
+Step 1: Code for Menu + TreeView 
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" 
+Inherits="_Default" %> 
+<!DOCTYPE html> 
+<html> 
+<head runat="server"> 
+<title>Navigation Controls Example</title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<!-- MENU CONTROL --> 
+<asp:Menu ID="Menu1" runat="server" Orientation="Horizontal"> 
+<Items> 
+<asp:MenuItem Text="Home" NavigateUrl="Home.aspx" /> 
+<asp:MenuItem Text="About" NavigateUrl="About.aspx" /> 
+<asp:MenuItem Text="Contact" NavigateUrl="Contact.aspx" /> 
+</Items> 
+</asp:Menu> 
+<br /><br /> 
+<!-- TREEVIEW CONTROL --> 
+<asp:TreeView ID="TreeView1" runat="server"> 
+<Nodes> 
+<asp:TreeNode Text="Courses"> 
+<asp:TreeNode Text="BCA" NavigateUrl="Courses.aspx" /> 
+<asp:TreeNode Text="MCA" NavigateUrl="Courses.aspx" /> 
+</asp:TreeNode> 
+<asp:TreeNode Text="Faculty"> 
+<asp:TreeNode Text="Teaching Staff" NavigateUrl="About.aspx" /> 
+<asp:TreeNode Text="Non-Teaching Staff" NavigateUrl="About.aspx" /> 
+</asp:TreeNode> 
+</Nodes> 
+</asp:TreeView> 
+</form> 
+</body> 
+</html> 
+
+Step 2: Create Simple Content Pages 
+Home.aspx 
+<h2>Welcome to Home Page</h2> 
+About.aspx 
+<h2>About Our College</h2> 
+Contact.aspx 
+<h2>Contact Us</h2> 
+Courses.aspx 
+<h2>Course Details Page</h2>
