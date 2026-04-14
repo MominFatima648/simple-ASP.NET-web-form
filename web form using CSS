@@ -1,0 +1,81 @@
+Step 1: Write CSS in site.css 
+body {  
+background-color: #f1f1f1; 
+font-family: Arial, sans-serif; 
+} 
+.container { 
+width: 400px; 
+margin: 50px auto; 
+padding: 20px; 
+background: white; 
+border-radius: 10px; 
+box-shadow: 0 0 10px gray; 
+} 
+h2 { 
+text-align: center; 
+color: #0078D4; 
+} 
+label { 
+display: block; 
+font-weight: bold; 
+margin-top: 10px; 
+} 
+input[type=text], input[type=password], input[type=email] { 
+width: 100%; 
+padding: 8px; 
+margin-top: 5px; 
+border: 1px solid #ccc; 
+border-radius: 5px; 
+} 
+.btn { 
+width: 100%; 
+margin-top: 15px; 
+padding: 10px; 
+background: #0078D4; 
+color: white; 
+border: none; 
+border-radius: 5px; 
+cursor: pointer; 
+} 
+.btn:hover { 
+background: #005bb5; 
+} 
+
+Step 2: Add HTML + ASP.NET Controls in Registration.aspx 
+<!DOCTYPE html> 
+<html> 
+<head runat="server"> 
+<title>Registration Form</title> 
+<link href="Styles/site.css" rel="stylesheet" /> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div class="container"> 
+<h2>Registration Form</h2> 
+<label>Name:</label> 
+<asp:TextBox ID="txtName" runat="server"></asp:TextBox> 
+<label>Email:</label> 
+<asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox> 
+<label>Password:</label> 
+<asp:TextBox ID="txtPassword" runat="server" 
+TextMode="Password"></asp:TextBox> 
+<label>Gender:</label> 
+<asp:DropDownList ID="ddlGender" runat="server"> 
+<asp:ListItem>Male</asp:ListItem> 
+<asp:ListItem>Female</asp:ListItem> 
+<asp:ListItem>Other</asp:ListItem> 
+</asp:DropDownList> 
+<asp:Button ID="btnSubmit" CssClass="btn" runat="server" Text="Register" 
+OnClick="btnSubmit_Click" /> 
+<br /><br /> 
+<asp:Label ID="lblResult" runat="server" ForeColor="Green"></asp:Label> 
+</div> 
+</form> 
+</body> 
+</html> 
+
+Step 3: Write Code-Behind Logic in Registration.aspx.cs 
+protected void btnSubmit_Click(object sender, EventArgs e) 
+{ 
+lblResult.Text = "Registration Successful! Welcome " + txtName.Text; 
+}
