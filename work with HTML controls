@@ -1,0 +1,58 @@
+HTML Code (HtmlFormDemo.aspx) 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title>HTML Controls Demo</title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<h2>Registration Form (Using HTML Controls)</h2> 
+<!-- Name --> 
+<label>Full Name:</label> 
+<input type="text" id="txtName" runat="server" /> 
+<br /><br /> 
+<!-- Email --> 
+<label>Email:</label> 
+<input type="email" id="txtEmail" runat="server" /> 
+<br /><br /> 
+<!-- Gender --> 
+<label>Gender:</label> 
+<select id="ddlGender" runat="server"> 
+<option>-- Select Gender --</option> 
+<option>Male</option> 
+<option>Female</option> 
+<option>Other</option> 
+</select> 
+<br /><br /> 
+<!-- Address --> 
+<label>Address:</label> 
+<textarea id="txtAddress" rows="3" cols="30" runat="server"></textarea> 
+<br /><br /> 
+<!-- Submit Button --> 
+<button id="btnSubmit" runat="server" 
+onserverclick="btnSubmit_ServerClick">Submit</button> 
+<br /><br /> 
+<!-- Result Label --> 
+<label id="lblResult" runat="server" style="color:blue; font-weight:bold;"></label> 
+</form> 
+</body> 
+</html>
+
+
+Code-Behind (HtmlFormDemo.aspx.cs) 
+using System; 
+public partial class HtmlFormDemo : System.Web.UI.Page 
+{ 
+protected void Page_Load(object sender, EventArgs e) 
+{ 
+} 
+protected void btnSubmit_ServerClick(object sender, EventArgs e) 
+{ 
+string name = txtName.Value; 
+string email = txtEmail.Value; 
+string gender = ddlGender.Value; 
+string address = txtAddress.Value; 
+lblResult.InnerText = $"Hello {name}, Your Email is {email}, Gender: {gender}, Address: 
+{address}"; 
+} 
+}
