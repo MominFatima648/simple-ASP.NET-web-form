@@ -1,0 +1,101 @@
+ValidationForm.aspx 
+<%@ Page Language="C#" UnobtrusiveValidationMode="None" AutoEventWireup="true" 
+CodeFile="ValidationForm.aspx.cs" Inherits="ValidationForm" %> 
+<!DOCTYPE html> 
+<html> 
+<head runat="server"> 
+<title>Validation Controls Practical</title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<h2>Student Registration Form</h2> 
+<!-- Name --> 
+Name: 
+<asp:TextBox ID="txtName" runat="server"></asp:TextBox> 
+<asp:RequiredFieldValidator  
+ID="rfvName"  
+runat="server" 
+ControlToValidate="txtName" 
+ErrorMessage="Name is required" 
+ForeColor="Red"> 
+</asp:RequiredFieldValidator> 
+<br /><br /> 
+<!-- Age --> 
+Age: 
+<asp:TextBox ID="txtAge" runat="server"></asp:TextBox> 
+<asp:RangeValidator  
+ID="rvAge"  
+runat="server" 
+ControlToValidate="txtAge" 
+MinimumValue="18" 
+MaximumValue="60" 
+Type="Integer" 
+ErrorMessage="Age must be between 18 and 60" 
+ForeColor="Red"> 
+</asp:RangeValidator> 
+<br /><br /> 
+<!-- Email --> 
+Email: 
+<asp:TextBox ID="txtEmail" runat="server"></asp:TextBox> 
+<asp:RegularExpressionValidator  
+ID="revEmail"  
+runat="server" 
+ControlToValidate="txtEmail" 
+ValidationExpression="\w+@\w+\.\w+" 
+ErrorMessage="Invalid Email Format" 
+ForeColor="Red"> 
+</asp:RegularExpressionValidator> 
+<br /><br /> 
+<!-- Password --> 
+Password: 
+<asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox> 
+<asp:RequiredFieldValidator  
+ID="rfvPassword"  
+runat="server" 
+ControlToValidate="txtPassword" 
+ErrorMessage="Password is required" 
+ForeColor="Red"> 
+</asp:RequiredFieldValidator> 
+<br /><br /> 
+<!-- Confirm Password --> 
+Confirm Password: 
+<asp:TextBox ID="txtConfirm" runat="server" TextMode="Password"></asp:TextBox> 
+<asp:CompareValidator  
+ID="cvPassword"  
+runat="server" 
+ControlToValidate="txtConfirm" 
+ControlToCompare="txtPassword" 
+ErrorMessage="Passwords do not match" 
+ForeColor="Red"> 
+</asp:CompareValidator> 
+<br /><br /> 
+<!-- Submit Button --> 
+<asp:Button ID="btnSubmit" runat="server" Text="Submit"  OnClick="btnSubmit_Click"  /> 
+<br /><br /> 
+<!-- Validation Summary --> 
+<asp:ValidationSummary  
+ID="ValidationSummary1"  
+runat="server" 
+HeaderText="Please fix the following errors:" 
+ForeColor="Blue" /> 
+</form> 
+</body> 
+</html> 
+
+ValidationForm.aspx.cs (C# Code) 
+using System; 
+public partial class ValidationForm : System.Web.UI.Page 
+{ 
+protected void Page_Load(object sender, EventArgs e) 
+{ 
+} 
+protected void btnSubmit_Click(object sender, EventArgs e) 
+{ 
+// Check if all validations are successful 
+if (Page.IsValid) 
+{ 
+// If valid, show success message 
+Response.Write("<script>alert('Form Submitted Successfully!');</script>"); 
+} 
+    } 
+} 
